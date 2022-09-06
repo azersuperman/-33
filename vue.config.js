@@ -3,9 +3,9 @@ module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
     devServer: {
-      devServer: {
-        open: true
-      }
+      open: true,
+      port: 8888,
+      host: 'localhost'
     }
   }
 })
