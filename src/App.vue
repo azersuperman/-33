@@ -14,11 +14,8 @@
 
 // 1. 下载yarn add postcss-pxtorem
 // 2. 告诉postcss，我要使用这个插件, .postcssrc.js
-export default {
-  data() {
-    return {}
-  }
-}
+
+export default {}
 </script>
 
 <style scoped>
