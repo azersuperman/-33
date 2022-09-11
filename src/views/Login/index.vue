@@ -89,7 +89,8 @@ export default {
         // error : 1. js抛的错 2 axios 封装的error对象
 
         // axios
-        if (error.response && error.response.status === 400) {
+        // 可选链操作符
+        if (error.response?.status === 400) {
           console.log(error)
           this.$toast.fail(error.response.data.message)
         } else {
