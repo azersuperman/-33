@@ -12,6 +12,7 @@
           <span class="toutiao toutiao-shouji"></span>
         </template>
       </van-field>
+
       <van-field
         v-model="code"
         name="code"
@@ -50,7 +51,7 @@
 </template>
 
 <script>
-import { mobileRules, codeRules } from '@/views/Login/node'
+import { mobileRules, codeRules } from './node'
 import { login, sendCodeAPI } from '@/api'
 import { mapMutations } from 'vuex'
 export default {
@@ -66,13 +67,7 @@ export default {
 
   methods: {
     ...mapMutations(['SET_TOKEN']),
-    loading() {
-      this.$toast.loading({
-        message: '加载中...',
-        forbidClicks: true,
-        duration: 0
-      })
-    },
+
     async onSubmit() {
       // submit事件只有表单校验通过以后会被触发
 
@@ -95,12 +90,20 @@ export default {
 
         // axios
         if (error.response && error.response.status === 400) {
+          console.log(error)
           this.$toast.fail(error.response.data.message)
         } else {
           this.$toast.clear()
           throw error
         }
       }
+    },
+    loading() {
+      this.$toast.loading({
+        message: '加载中...',
+        forbidClicks: true,
+        duration: 0
+      })
     },
     async sendCode() {
       await this.$refs.form.validate('mobile')
