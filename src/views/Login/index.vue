@@ -77,6 +77,7 @@ export default {
       try {
         // 登录
         const { data } = await login(this.mobile, this.code)
+        console.log(data.data)
         // 将token存入vuex中
         this.SET_TOKEN(data.data)
         // 跳转路由

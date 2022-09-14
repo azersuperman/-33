@@ -10,13 +10,14 @@ export default new Vuex.Store({
     createPersistedstate({
       key: 'HEIMA_TOUTIAO',
       storage: Window.sessionStorage,
-      reducer({ tokenObj }) {
-        return { tokenObj }
+      reducer({ tokenObj, MyChannels }) {
+        return { tokenObj, MyChannels }
       }
     })
   ],
   state: {
-    tokenObj: {}
+    tokenObj: {},
+    MyChannels: []
   },
   getters: {
     isLogin(state) {
@@ -26,6 +27,13 @@ export default new Vuex.Store({
   mutations: {
     SET_TOKEN(state, token) {
       state.tokenObj = token
+    },
+
+    /**
+     * @param {Array} channels 删除或添加后最新的数组
+     */
+    SET_MY_CHANNELS(state, channels) {
+      state.MyChannels = channels
     }
   }
 })

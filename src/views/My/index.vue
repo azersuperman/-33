@@ -2,7 +2,7 @@
   <div class="profile">
     <!-- 头部 -->
     <header>
-      <!-- 未登录状态 -->
+      <!-- 登录状态 -->
       <div class="login banner" v-if="isLogin">
         <van-row></van-row>
 
@@ -55,7 +55,7 @@
           </van-grid>
         </van-row>
       </div>
-      <!-- 登录状态 -->
+      <!-- 未登录状态 -->
       <div class="logout banner" v-else :click="$router.push('/login')">
         <van-image width="1.76rem" height="1.76rem" :src="mobileSrc" />
         <span class="text">登录 / 注册</span>
