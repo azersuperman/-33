@@ -69,7 +69,7 @@
             queueMicrotask(() => {
               try {
                 const x = onFulfilled(this.value)
-                resolve(x)
+                resolve(x,p2,resolve, reject)
               } catch (error) {
                 reject(error)
               }
@@ -80,7 +80,7 @@
             queueMicrotask(() => {
               try {
                 const x = onRejected(this.reason)
-                resolve(x)
+                resolve(x,p2,resolve, reject)
               } catch (error) {
                 reject(error)
               }
@@ -97,7 +97,7 @@
                 // 多写逻辑
                 try {
                   const x = onFulfilled(this.value)
-                  resolve(x)
+                  resolve(x,p2,resolve, reject)
                 } catch (error) {
                   reject(error)
                 }
@@ -108,7 +108,7 @@
               queueMicrotask(() => {
                 try {
                   const x = onRejected(this.reason)
-                  resolve(x)
+                  resolve(x,p2,resolve, reject)
                 } catch (error) {
                   reject(error)
                 }
@@ -119,6 +119,13 @@
         return p2
       }
     }
+
+    function resolve(x,p2,resolve,reject) {
+      if(x ===p2){
+        throw new TypeError('Chaining cycle detected for promise #<Promise>')
+      }
+    }
+
     const p = new Promise((resolve, reject) => {
       rejcet()
     })

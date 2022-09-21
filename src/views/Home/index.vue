@@ -134,7 +134,7 @@ export default {
         }
         // 2. 视图层添加频道
         this.channels.push(channel)
-        this.$$toast.success('添加频道成功')
+        this.$toast.success('添加频道成功')
       } catch (error) {
         if (error.response && error.response.status === 401) {
           this.$toast.fail('添加频道成功')

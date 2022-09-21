@@ -20,7 +20,7 @@
                 height="1.5rem"
                 :src="userInfo.photo"
               />
-              <span class="mobile">131111111</span>
+              <span class="mobile">{{ userInfo.name }}</span>
             </van-row>
           </van-col>
           <van-col span="7"></van-col>
@@ -31,7 +31,11 @@
               align="center"
               style="height: 100%"
             >
-              <van-button size="mini" round class="edit-btn"
+              <van-button
+                size="mini"
+                round
+                class="edit-btn"
+                @click="$router.push('/user')"
                 >编辑信息</van-button
               >
             </van-row>
@@ -119,11 +123,9 @@ export default {
       this.$store.commit('SET_TOKEN', {})
     },
     async getUserInfo() {
-      console.log(getUserInfoAPI())
       try {
         if (!this.isLogin) return
         const { data } = await getUserInfoAPI()
-        console.log(data)
         this.userInfo = data.data
       } catch (error) {
         if (error.reponse && error.response.status === 401) {

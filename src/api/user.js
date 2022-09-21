@@ -41,3 +41,42 @@ export const getUserInfoAPI = () => {
     // }
   })
 }
+
+export const uploadPhoto = (file) => {
+  const fm = new FormData()
+  fm.append('photo', file)
+
+  return request({
+    url: '/v1_0/user/photo',
+    method: 'PATCH',
+    data: fm
+  })
+}
+
+/**
+ * 获取个人资料
+ * @returns Promise
+ */
+export const getProfileAPI = () => {
+  return request({
+    url: '/v1_0/user/profile'
+  })
+}
+
+/**
+ *
+ * @param {String} name  昵称
+ * @param {String} gender  性别
+ * @param {String} birthday  生日
+ * @param {String} real_name  真实姓名
+ * @param {String} intro   个人介绍
+ * @returns
+ */
+/* eslint-disable */
+export const savePersonalDataAPI = (data) => {
+  return request({
+    url: '/v1_0/user/profile',
+    method: 'PATCH',
+    data: data
+  })
+}

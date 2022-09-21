@@ -46,7 +46,7 @@ export default {
     label() {
       /* eslint-disable */
       const { aut_name, comm_count, pubdate } = this.article
-      return `${aut_name}${comm_count}${dayjs(pubdate).fromNow()}`
+      return `${aut_name}${comm_count}评论${dayjs(pubdate).fromNow()}`
     }
   }
 }

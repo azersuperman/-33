@@ -12,6 +12,14 @@
         error-text="加载失败，请刷新重试"
       >
         <article-item
+          @click.native="
+            $router.push({
+              path: '/detail',
+              query: {
+                articleId: item.art_id
+              }
+            })
+          "
           v-for="item in articles"
           :key="item.art_id"
           :article="item"
@@ -45,12 +53,14 @@ export default {
     this.getFristPageArticle()
   },
   methods: {
+    // 首页渲染
     async getFristPageArticle() {
       try {
         const { data } = await getArticles(this.id, +new Date())
         this.articles = data.data.results
         // 保存下一页时间戳用于分页
         this.preTimestamp = data.data.pre_timestamp
+        // data.data.pre_timestamp = null
       } catch (error) {
         // js 的错误，.507原封不动上抛，400上抛中文
         const status = error.response?.message
@@ -63,12 +73,14 @@ export default {
         }
       }
     },
+
+    // 获取下一页
     async getNextPageArticle() {
       // 1. 发送请求
       try {
-        if (Math.random() < 0.5) {
-          this.error = true
-        }
+        // if (Math.random() < 0.5) {
+        //   this.error = true
+        // }
         const { data } = await getArticles(this.id, this.preTimestamp)
         if (!data.data.pre_timestamp) {
           this.finished = true
